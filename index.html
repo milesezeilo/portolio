@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Miles Ezeilo | Sustainability Business Development</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0d0d0d;
+    --paper: #f5f0e8;
+    --amber: #26704a;
+    --amber-light: #7fcf9b;
+    --green: #2a4a2e;
+    --green-light: #4a7a52;
+    --muted: #8a8278;
+    --border: rgba(13,13,13,0.12);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.4rem 3rem;
+    background: rgba(245,240,232,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--amber);
+  }
+  .nav-links { display: flex; gap: 2.4rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--ink);
+    opacity: 0.6;
+    transition: opacity 0.2s;
+  }
+  .nav-links a:hover { opacity: 1; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+    overflow: hidden;
+  }
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6rem 4rem 6rem 6rem;
+    animation: fadeUp 1s ease both;
+  }
+  .hero-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 1.6rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .hero-tag::before { content: ''; display: block; width: 2rem; height: 1px; background: var(--amber); }
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.6rem, 6vw, 6rem);
+    font-weight: 300;
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.8rem;
+  }
+  h1 em { font-style: italic; color: var(--amber); }
+  .hero-desc {
+    font-size: 1rem;
+    line-height: 1.72;
+    color: var(--muted);
+    max-width: 44ch;
+    margin-bottom: 2.8rem;
+  }
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.88rem 1.8rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.74rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    transition: all 0.25s;
+    cursor: pointer;
+  }
+  .btn-filled { background: var(--ink); color: var(--paper); }
+  .btn:hover { background: var(--ink); color: var(--paper); }
+  .btn-filled:hover { background: var(--amber); border-color: var(--amber); }
+
+  .hero-right {
+    position: relative;
+    overflow: hidden;
+    animation: fadeIn 1.2s ease 0.3s both;
+  }
+  .hero-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: grayscale(20%) contrast(1.05);
+  }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(38,112,74,0.10) 0%, rgba(13,13,13,0.18) 100%);
+  }
+  .hero-stat-bar {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    display: flex;
+    background: rgba(13,13,13,0.85);
+    backdrop-filter: blur(8px);
+    padding: 1.4rem 2rem;
+    gap: 0;
+  }
+  .stat {
+    flex: 1;
+    text-align: center;
+    border-right: 1px solid rgba(255,255,255,0.12);
+    padding: 0.4rem 1rem;
+  }
+  .stat:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--amber-light);
+    line-height: 1;
+    display: block;
+  }
+  .stat-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-top: 0.3rem;
+    display: block;
+  }
+
+  /* ── SECTION SHARED ── */
+  section { padding: 7rem 6rem; }
+  .section-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .section-tag::before { content: ''; display: block; width: 1.6rem; height: 1px; background: var(--amber); }
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.4rem, 4vw, 3.6rem);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.6rem;
+  }
+  h2 em { font-style: italic; color: var(--amber); }
+
+  /* ── ABOUT ── */
+  .about { background: var(--ink); color: var(--paper); }
+  .about .section-tag { color: var(--amber-light); }
+  .about .section-tag::before { background: var(--amber-light); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    margin-top: 3.5rem;
+    align-items: start;
+  }
+  .about-body {
+    font-size: 1.05rem;
+    line-height: 1.78;
+    color: rgba(245,240,232,0.75);
+  }
+  .about-body p + p { margin-top: 1.2rem; }
+  .about-body strong { color: var(--amber-light); font-weight: 400; }
+  .about-right { display: flex; flex-direction: column; gap: 1.6rem; }
+  .about-img {
+    width: 100%; aspect-ratio: 4/3;
+    object-fit: cover;
+    filter: grayscale(30%);
+  }
+  .about-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.5;
+    color: var(--amber-light);
+    border-left: 2px solid var(--amber);
+    padding-left: 1.4rem;
+  }
+
+  /* ── WORK / PROJECTS ── */
+  .work { background: var(--paper); }
+  .work-intro {
+    font-size: 1rem;
+    color: var(--muted);
+    max-width: 56ch;
+    line-height: 1.7;
+    margin-top: 0.8rem;
+    margin-bottom: 4rem;
+  }
+  .projects { display: flex; flex-direction: column; gap: 0; }
+  .project {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    border-top: 1px solid var(--border);
+    min-height: 340px;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+  .project:hover { background: rgba(38,112,74,0.05); }
+  .project:last-child { border-bottom: 1px solid var(--border); }
+  .project-img-wrap {
+    overflow: hidden;
+    position: relative;
+  }
+  .project-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+    filter: grayscale(20%);
+  }
+  .project:hover .project-img { transform: scale(1.04); }
+  .project-img-label {
+    position: absolute; top: 1.2rem; left: 1.2rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    background: var(--amber);
+    color: white;
+  }
+  .project-content {
+    padding: 3rem 3.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.2rem;
+  }
+  .project-org {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--amber);
+  }
+  .project h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.9rem;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+  .project-desc {
+    font-size: 0.92rem;
+    line-height: 1.72;
+    color: var(--muted);
+  }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.4rem; }
+  .tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.28rem 0.7rem;
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+  .project-img-wrap.noimg {
+    min-height: 340px;
+    display: flex; align-items: flex-end;
+    padding: 2rem;
+    background: linear-gradient(135deg, var(--green) 0%, #1a2e1d 60%, #0d0d0d 100%);
+  }
+  .project-img-wrap.noimg.warm {
+    background: linear-gradient(135deg, #3a2a12 0%, #1f1608 60%, #0d0d0d 100%);
+  }
+  .noimg-stat {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 5vw, 4.6rem);
+    font-weight: 300;
+    line-height: 1;
+    color: var(--amber-light);
+  }
+  .noimg-stat small {
+    display: block;
+    margin-top: 0.6rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.55);
+  }
+  .results { margin-top: 0.4rem; display: flex; flex-direction: column; gap: 1.1rem; }
+  .results-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 0.5rem;
+  }
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--border);
+  }
+  .metric {
+    padding: 0.9rem 0.8rem;
+    border-right: 1px solid var(--border);
+  }
+  .metric:last-child { border-right: none; }
+  .metric b {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.55rem;
+    font-weight: 400;
+    line-height: 1;
+    color: var(--ink);
+  }
+  .metric span {
+    display: block;
+    margin-top: 0.35rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.56rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .metrics-2 { grid-template-columns: 1fr 1fr; }
+  .testimonial {
+    border-left: 2px solid var(--amber);
+    padding-left: 1.2rem;
+  }
+  .testimonial p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  .testimonial cite {
+    display: block;
+    margin-top: 0.7rem;
+    font-style: normal;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    line-height: 1.7;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .results-note {
+    font-size: 0.84rem;
+    line-height: 1.66;
+    color: var(--muted);
+  }
+  .project:nth-child(even) { grid-template-columns: 1.4fr 1fr; }
+  .project:nth-child(even) .project-img-wrap { order: 2; }
+  .project:nth-child(even) .project-content { order: 1; }
+
+  /* ── SKILLS ── */
+  .skills { background: var(--green); color: var(--paper); }
+  .skills .section-tag { color: rgba(245,240,232,0.6); }
+  .skills .section-tag::before { background: rgba(245,240,232,0.4); }
+  .skills h2 { color: var(--paper); }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin-top: 4rem;
+    border: 1px solid rgba(255,255,255,0.12);
+  }
+  .skill-block {
+    padding: 2.4rem 2rem;
+    border-right: 1px solid rgba(255,255,255,0.12);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+  }
+  .skill-block:nth-child(3n) { border-right: none; }
+  .skill-block:nth-last-child(-n+3) { border-bottom: none; }
+  .skill-icon {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+  .skill-block h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.24rem;
+    font-weight: 400;
+    color: var(--amber-light);
+    margin-bottom: 0.8rem;
+  }
+  .skill-block p {
+    font-size: 0.84rem;
+    line-height: 1.66;
+    color: rgba(245,240,232,0.55);
+  }
+
+  /* ── CREDENTIALS ── */
+  .creds { background: var(--paper); }
+  .creds-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid var(--border);
+    margin-top: 3.5rem;
+  }
+  .cred {
+    padding: 2rem 1.6rem;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .cred:last-child { border-right: none; }
+  .cred-year {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--amber);
+    letter-spacing: 0.12em;
+  }
+  .cred h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    line-height: 1.3;
+  }
+  .cred p {
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+
+  /* ── CONTACT ── */
+  .contact {
+    background: var(--ink);
+    color: var(--paper);
+    text-align: center;
+    padding: 8rem 6rem;
+  }
+  .contact .section-tag { justify-content: center; color: var(--amber-light); }
+  .contact .section-tag::before { background: var(--amber-light); }
+  .contact h2 { margin-bottom: 1.2rem; color: var(--paper); }
+  .contact-sub {
+    font-size: 1rem;
+    color: rgba(245,240,232,0.5);
+    margin-bottom: 3rem;
+  }
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+  }
+  .contact-links .btn {
+    border-color: rgba(245,240,232,0.3);
+    color: var(--paper);
+  }
+  .contact-links .btn:hover {
+    background: var(--amber);
+    border-color: var(--amber);
+    color: var(--paper);
+  }
+  .contact-links .btn-filled {
+    background: var(--amber);
+    border-color: var(--amber);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 1.6rem 6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  footer p {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.64rem;
+    letter-spacing: 0.1em;
+    color: rgba(245,240,232,0.3);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 1.6rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { height: 50vw; }
+    section { padding: 5rem 2rem; }
+    .about-grid, .project, .project:nth-child(even) { grid-template-columns: 1fr; }
+    .project-img-wrap { height: 240px; }
+    .project:nth-child(even) .project-img-wrap { order: 1; }
+    .project:nth-child(even) .project-content { order: 2; }
+    .skills-grid, .creds-grid { grid-template-columns: 1fr 1fr; }
+    .metrics { grid-template-columns: 1fr 1fr; }
+    .metric { border-bottom: 1px solid var(--border); }
+    .project-img-wrap.noimg { min-height: 200px; }
+    .cred { border-bottom: 1px solid var(--border); }
+    footer { flex-direction: column; gap: 0.6rem; text-align: center; }
+  }
+
+  /* ── LOGO STRIP ── */
+  .logo-strip { padding: 3rem 6rem; background: var(--paper); border-bottom: 1px solid var(--border); }
+  .logo-strip-label {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.64rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1.4rem;
+  }
+  .logo-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .logo-tile {
+    flex: 1 1 150px;
+    height: 100px;
+    background: #fff;
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    padding: 0.9rem 1.2rem;
+  }
+  .logo-tile img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
+
+  /* ── THE CASE ── */
+  .case {
+    background-color: var(--ink);
+    background-image: linear-gradient(rgba(13,13,13,0.74), rgba(13,13,13,0.82)), url('https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1600&q=80');
+    background-size: cover;
+    background-position: center;
+    color: var(--paper);
+    padding: 8rem 6rem;
+  }
+  .case .section-tag { color: var(--amber-light); }
+  .case .section-tag::before { background: var(--amber-light); }
+  .case-inner { max-width: 62ch; }
+  .case h2 { color: var(--paper); margin-bottom: 1.4rem; }
+  .case h2 em { color: var(--amber-light); }
+  .case p { font-size: 1.1rem; line-height: 1.8; color: rgba(245,240,232,0.82); }
+
+  /* ── ABOUT PHOTOS ── */
+  .about-img.portrait { aspect-ratio: 5/6; object-position: center 18%; filter: none; }
+  .about-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .about-photos img { width: 100%; aspect-ratio: 1/1; object-fit: cover; object-position: center 30%; }
+
+  /* ── LOGO PROJECT IMAGES ── */
+  .project-img-wrap.logo {
+    background: #fff;
+    display: flex; align-items: center; justify-content: center;
+    padding: 3rem;
+    min-height: 340px;
+  }
+  .project-img-wrap.logo .project-img {
+    width: auto; height: auto;
+    max-width: 78%; max-height: 55%;
+    object-fit: contain;
+    filter: none;
+  }
+  .project-img-wrap.logo .project-img.logo-sm { max-width: 40%; }
+
+  /* ── CONTACT PHOTO ── */
+  .contact-photo {
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    border: 2px solid var(--amber);
+    margin: 0 auto 1.8rem;
+    display: block;
+  }
+
+  @media (max-width: 900px) {
+    .logo-strip { padding: 2.5rem 2rem; }
+    .case { padding: 5rem 2rem; }
+    .project-img-wrap.logo { min-height: 200px; padding: 2rem; }
+  }
+
+  /* ── v5 adjustments ── */
+  .about h2 em, .skills h2 em, .contact h2 em { color: var(--amber-light); }
+  .about-grid { align-items: stretch; }
+  .about-body {
+    display: flex; flex-direction: column; justify-content: space-between;
+    font-size: 1.16rem; line-height: 2.05;
+  }
+  .about-body p + p { margin-top: 0; }
+  @media (max-width: 900px) {
+    .hero-left { padding: 4rem 2rem; }
+    .about-body { display: block; line-height: 1.8; }
+    .about-body p + p { margin-top: 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">Miles Ezeilo</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <span class="hero-tag">Sustainability · Business Development</span>
+    <h1>Miles<br><em>Ezeilo</em></h1>
+    <p class="hero-desc">I help sustainability consultancies and clean energy businesses grow. I handle business development end to end: the messaging, the lead research, and the tested email and call sequences that turn the right buyers into conversations.</p>
+    <div class="hero-cta">
+      <a href="#work" class="btn btn-filled">View Work</a>
+      <a href="#contact" class="btn">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img class="hero-img" src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=900&q=80" alt="Solar panel array">
+    <div class="hero-overlay"></div>
+    <div class="hero-stat-bar">
+      <div class="stat">
+        <span class="stat-num">6+</span>
+        <span class="stat-label">Years Across Sectors</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">4</span>
+        <span class="stat-label">ESG Frameworks</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">3</span>
+        <span class="stat-label">Continents</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGOS -->
+<section class="logo-strip">
+  <span class="logo-strip-label">Experience with</span>
+  <div class="logo-row">
+    <div class="logo-tile"><img src="images/deloitte.png" alt="Deloitte"></div>
+    <div class="logo-tile"><img src="images/subak.jpg" alt="Subak"></div>
+    <div class="logo-tile"><img src="images/green-bison-digital.png" alt="Green Bison Digital"></div>
+    <div class="logo-tile"><img src="images/esgiaa.png" alt="ESG in Action Africa"></div>
+    <div class="logo-tile"><img src="images/sustainability-practice.png" alt="The Sustainability Practice"></div>
+  </div>
+</section>
+
+<!-- THE CASE -->
+<section class="case">
+  <div class="case-inner">
+    <span class="section-tag">Why business development</span>
+    <h2>The mission and credentials are there <em>from day one</em></h2>
+    <p>In my experience, sustainability firms and businesses have the mission and the credentials from day one. What they struggle with is building the business: finding the right buyers, explaining what they do in terms those buyers care about, and keeping a steady pipeline while they deliver the work. That is the part I take on.</p>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <span class="section-tag">About</span>
+  <h2>Business development for <em>sustainability businesses</em></h2>
+  <div class="about-grid">
+    <div class="about-body">
+      <p>I work with sustainability consultancies and clean energy businesses on business development: <strong>messaging</strong>, <strong>lead research</strong>, and <strong>tested email and call sequences</strong> that turn the right people into conversations.</p>
+      <p>I understand what I am selling. I worked on ESG data governance and training at <strong>Deloitte</strong>, supported sustainability clients in London through <strong>Subak</strong>, wrote ESG case studies focused on Africa, and managed solar projects for my family's business in Lagos. Deloitte's in-house training also gave me a grounding in sales frameworks like BANT.</p>
+      <p>Most recently, I have been business lead at <strong>Green Bison Digital</strong>, running lead generation and building AI tools for solar and energy installers, and a contract business development lead for <strong>The Sustainability Practice</strong>, where I designed and tested a business development programme, including the messaging behind it.</p>
+      <p>I hold a <strong>BA from Howard University</strong> (Magna Cum Laude) and have completed my <strong>MBA in Marketing Management</strong> at Greenwich Business School.</p>
+    </div>
+    <div class="about-right">
+      <img class="about-img portrait" src="images/miles-portrait-2.jpg" alt="Miles Ezeilo">
+      <div class="about-photos">
+        <img src="images/miles-workshop.jpg" alt="Miles contributing in a team workshop">
+        <img src="images/miles-presenting.jpg" alt="Miles presenting to a room">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="work" id="work">
+  <span class="section-tag">Selected Work</span>
+  <h2>Projects that <em>prove</em> the point</h2>
+  <p class="work-intro">Business development, messaging and lead generation work for sustainability and energy businesses, backed by ESG and marketing experience.</p>
+
+  <div class="projects">
+
+    <!-- Project: Sustainability consultancy case study -->
+    <div class="project reveal">
+      <div class="project-img-wrap logo">
+        <span class="project-img-label">Case Study</span>
+        <img class="project-img" src="images/sustainability-practice.png" alt="The Sustainability Practice logo">
+      </div>
+      <div class="project-content">
+        <span class="project-org">The Sustainability Practice · Business Development Lead</span>
+        <h3>Business Development Programme</h3>
+        <p class="project-desc">A contract to build and test a business development motion for a sustainability consultancy, starting with schools and colleges hit by summer heat closures. I built the three-pillar messaging foundation (people, sector, specific problem), researched and verified target lists with a personalised, checkable detail for each school, ran two A/B tested email sequences, set up a lead pre-screen and handoff, scoped the local authority and housing track, and cut the firm's homepage copy from roughly 1,800 to 500 words around the same pillars.</p>
+        <div class="results">
+          <div class="metrics metrics-2">
+            <div class="metric"><b>56.9%</b><span>Open rate · First email</span></div>
+            <div class="metric"><b>31.7%</b><span>Open rate · Second email</span></div>
+          </div>
+          <blockquote class="testimonial">
+            <p>"Miles is skilled and dedicated and has an ability to understand and condense complexity into simple targeted messaging."</p>
+            <cite>Nick Martin<br>Founder of The Sustainability Practice and former Head of Sustainability, Great Ormond Street Hospital</cite>
+          </blockquote>
+        </div>
+        <div class="project-tags">
+          <span class="tag">Messaging Strategy</span>
+          <span class="tag">A/B Testing</span>
+          <span class="tag">Lead Research</span>
+          <span class="tag">Deliverability</span>
+          <span class="tag">Website Copy</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project: Green Bison Digital -->
+    <div class="project reveal">
+      <div class="project-img-wrap logo">
+        <span class="project-img-label">Active</span>
+        <img class="project-img" src="images/green-bison-digital.png" alt="Green Bison Digital logo">
+      </div>
+      <div class="project-content">
+        <span class="project-org">Green Bison Digital · Business Lead</span>
+        <h3>Business Development and AI Tools for Solar Installers</h3>
+        <p class="project-desc">Business lead at a sustainability-focused marketing agency that runs prospect research and lead generation for solar and energy installers. I also build agentic AI tools for the same market, including an AI voice receptionist that answers inbound calls, qualifies leads, books appointments and follows up by text. I own the positioning, pricing and website messaging, the sales deck and demo script, and the outreach that puts it in front of installers, including discovery calls.</p>
+        <div class="project-tags">
+          <span class="tag">Lead Generation</span>
+          <span class="tag">Prospect Research</span>
+          <span class="tag">Agentic AI</span>
+          <span class="tag">Product Positioning</span>
+          <span class="tag">Sales Enablement</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project: Deloitte -->
+    <div class="project reveal">
+      <div class="project-img-wrap logo">
+        <span class="project-img-label">Deloitte</span>
+        <img class="project-img" src="images/deloitte.png" alt="Deloitte logo">
+      </div>
+      <div class="project-content">
+        <span class="project-org">Deloitte · Lagos, Nigeria</span>
+        <h3>ESG Advisory and Training</h3>
+        <p class="project-desc">Designed ESG data governance frameworks for a natural gas client, enabling KPI tracking and sustainability metrics across operational and reporting systems. Co-created an ESG learning programme covering GRI, SASB, TCFD and ISSB, plus climate risk, carbon accounting and Scope 1, 2 and 3 emissions. Built my sales foundation here through in-house training in frameworks like BANT.</p>
+        <div class="project-tags">
+          <span class="tag">GRI · SASB · TCFD · ISSB</span>
+          <span class="tag">Data Governance</span>
+          <span class="tag">Carbon Accounting</span>
+          <span class="tag">BANT</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project: ESGiAA -->
+    <div class="project reveal">
+      <div class="project-img-wrap logo">
+        <span class="project-img-label">ESGiAA</span>
+        <img class="project-img logo-sm" src="images/esgiaa.png" alt="ESG in Action Africa logo">
+      </div>
+      <div class="project-content">
+        <span class="project-org">ESG in Action Africa</span>
+        <h3>Africa ESG Research</h3>
+        <p class="project-desc">Developed Africa-focused ESG case studies that use sustainability data to show climate, environmental and social impact across industries. Audited the organisation's content and data to map sustainability themes, and designed service offerings aligned with sustainable finance, stakeholder engagement and ESG reporting needs.</p>
+        <div class="project-tags">
+          <span class="tag">ESG Research</span>
+          <span class="tag">Sustainable Finance</span>
+          <span class="tag">Climate Risk</span>
+          <span class="tag">Service Design</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project: World Heritage USA -->
+    <div class="project reveal">
+      <div class="project-img-wrap logo">
+        <span class="project-img-label">World Heritage USA</span>
+        <img class="project-img" src="images/world-heritage-usa.png" alt="World Heritage USA logo">
+      </div>
+      <div class="project-content">
+        <span class="project-org">World Heritage USA · Remote</span>
+        <h3>Marketing and Partnerships</h3>
+        <p class="project-desc">Used audience and campaign data to drive a 40% increase in social media engagement and a 70% increase in podcast downloads. Built KPI dashboards to track marketing performance, and analysed partnership outcomes that contributed to a 20% increase in conference attendance.</p>
+        <div class="project-tags">
+          <span class="tag">Campaign Analytics</span>
+          <span class="tag">Partnerships</span>
+          <span class="tag">KPI Tracking</span>
+          <span class="tag">Stakeholder Reporting</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills" id="skills">
+  <span class="section-tag">Capabilities</span>
+  <h2>What I <em>do</em></h2>
+  <div class="skills-grid">
+    <div class="skill-block">
+      <h4>Business Development</h4>
+      <p>Sequence design, A/B testing, follow-up cadences, lead pre-screening and a clean handoff to whoever closes the deal.</p>
+    </div>
+    <div class="skill-block">
+      <h4>Messaging</h4>
+      <p>Positioning and messaging frameworks, cold email and call scripts, and website copy that says one clear thing to one specific buyer.</p>
+    </div>
+    <div class="skill-block">
+      <h4>Lead Research</h4>
+      <p>Building and verifying target lists by sector, with a personalised, checkable detail for each contact and checks on data quality.</p>
+    </div>
+    <div class="skill-block">
+      <h4>Deliverability</h4>
+      <p>Sending limits, bounce diagnosis, sender reputation and mailbox setup, so emails reach inboxes and results can be trusted.</p>
+    </div>
+    <div class="skill-block">
+      <h4>Sustainability Knowledge</h4>
+      <p>GRI, SASB, TCFD and ISSB, carbon accounting, Scope 1, 2 and 3 emissions, and climate risk. I can talk to buyers in their own terms.</p>
+    </div>
+    <div class="skill-block">
+      <h4>Qualification and Reporting</h4>
+      <p>BANT, discovery calls, objection handling, CRM follow-up, and plain reporting on what the numbers can and cannot tell you.</p>
+    </div>
+    <div class="skill-block">
+      <h4>AI and Automation</h4>
+      <p>Agentic AI tools for sales and service, including a voice receptionist that answers calls, qualifies leads and books appointments. I use AI to research, personalise and test faster.</p>
+    </div>
+    <div class="skill-block">
+      <h4>AI Strategy</h4>
+      <p>Roadmaps and system design for AI products, from advisory tools through to autonomous agents, including a five-tier AI autonomy framework.</p>
+    </div>
+    <div class="skill-block">
+      <h4>Data and Analytics</h4>
+      <p>Power BI, SQL and Tableau dashboards that turn campaign and ESG data into decisions people can act on.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CREDENTIALS -->
+<section class="creds" id="creds">
+  <span class="section-tag">Education & Certifications</span>
+  <h2>Credentials that <em>count</em></h2>
+  <div class="creds-grid">
+    <div class="cred">
+      <span class="cred-year">2018–2021</span>
+      <h4>B.A. Political Science</h4>
+      <p>Howard University, Washington D.C. Magna Cum Laude, Dean's List</p>
+    </div>
+    <div class="cred">
+      <span class="cred-year">Completed</span>
+      <h4>MBA Marketing Management</h4>
+      <p>Greenwich Business School, London</p>
+    </div>
+    <div class="cred">
+      <span class="cred-year">2024–2025</span>
+      <h4>SQL · Power BI · Generative AI</h4>
+      <p>SQL Data Analytics Foundation · Microsoft Power BI for Business Professionals · Google Generative AI Leader</p>
+    </div>
+    <div class="cred">
+      <span class="cred-year">Active</span>
+      <h4>ESG Framework Expertise</h4>
+      <p>GRI · SASB · TCFD · ISSB, applied across Deloitte client engagements</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <img class="contact-photo" src="images/miles-face.jpg" alt="Miles Ezeilo">
+  <span class="section-tag">Get in Touch</span>
+  <h2>Let's talk <em>growth</em></h2>
+  <p class="contact-sub">I work with sustainability consultancies and clean energy businesses on business development strategy, messaging and lead generation. Open to contract, fractional and full-time roles.</p>
+  <div class="contact-links">
+    <a href="mailto:Miles.ezeilo@gmail.com" class="btn btn-filled">miles.ezeilo@gmail.com</a>
+    <a href="https://www.linkedin.com/in/milesezeilo111" target="_blank" class="btn">LinkedIn</a>
+  </div>
+</section>
+
+<footer>
+  <p>&#169; 2026 Miles Ezeilo | Sustainability · Business Development</p>
+  <p>Lagos · London · Atlanta</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
